@@ -2,24 +2,31 @@
 <html>
 <head>
 <title>Minecraft Indev</title>
+</head>
 
-<script type="text/javascript">
-window.addEventListener("load", function() {
-    window.classicConfig = [
-		"game_frame",createAssetURI("assets"),
-		]; main();
-    });
+<body>
+<canvas id="game_frame"></canvas>
+
+<script id="assets" type="text/plain">
+AA==
 </script>
 
-<script type="text/javascript">
-  function createAssetURI(el) {
-    var eee = document.getElementById(el);
-    var str = eee.innerText;
-    eee.remove();
-    return "data:application/octet-stream;base64," + str.trim();
-  }
-</script>
+<script>
+function createAssetURI(el) {
+  var eee = document.getElementById(el);
+  var str = eee.innerText;
+  eee.remove();
+  return "data:application/octet-stream;base64," + str.trim();
+}
 
+window.addEventListener("load", function () {
+  window.classicConfig = {
+    container: "game_frame",
+    assetsURI: createAssetURI("assets")
+  };
+  if (typeof main === "function") main();
+});
+</script>
 <script type="text/javascript">
 "use strict";
 var main;(function(){
